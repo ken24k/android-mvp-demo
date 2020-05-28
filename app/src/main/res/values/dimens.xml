@@ -1,0 +1,40 @@
+<resources>
+
+    <dimen name="common_text_size_16">16sp</dimen>
+    <dimen name="common_text_size_18">18sp</dimen>
+
+    <dimen name="common_size_0">0dp</dimen>
+    <dimen name="common_size_1">1dp</dimen>
+    <dimen name="common_size_2">2dp</dimen>
+    <dimen name="common_size_3">3dp</dimen>
+    <dimen name="common_size_5">5dp</dimen>
+    <dimen name="common_size_8">8dp</dimen>
+    <dimen name="common_size_10">10dp</dimen>
+    <dimen name="common_size_13">13dp</dimen>
+    <dimen name="common_size_15">15dp</dimen>
+    <dimen name="common_size_18">18dp</dimen>
+    <dimen name="common_size_20">20dp</dimen>
+    <dimen name="common_size_23">23dp</dimen>
+    <dimen name="common_size_24">24dp</dimen>
+    <dimen name="common_size_25">25dp</dimen>
+    <dimen name="common_size_30">30dp</dimen>
+    <dimen name="common_size_34">34dp</dimen>
+    <dimen name="common_size_35">35dp</dimen>
+    <dimen name="common_size_40">40dp</dimen>
+    <dimen name="common_size_45">45dp</dimen>
+    <dimen name="common_size_50">50dp</dimen>
+    <dimen name="common_size_60">60dp</dimen>
+    <dimen name="common_size_70">70dp</dimen>
+    <dimen name="common_size_80">80dp</dimen>
+    <dimen name="common_size_100">100dp</dimen>
+    <dimen name="common_size_110">110dp</dimen>
+    <dimen name="common_size_120">120dp</dimen>
+    <dimen name="common_size_135">135dp</dimen>
+    <dimen name="common_size_140">140dp</dimen>
+    <dimen name="common_size_180">180dp</dimen>
+    <dimen name="common_size_200">200dp</dimen>
+    <dimen name="common_size_240">240dp</dimen>
+    <dimen name="common_size_290">290dp</dimen>
+    <dimen name="common_size_300">300dp</dimen>
+
+</resources>
