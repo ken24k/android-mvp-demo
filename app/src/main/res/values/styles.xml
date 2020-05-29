@@ -15,6 +15,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <!-- 身份证拍照 -->
+    <style name="IDCardCamera" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <!-- 常规页 -->
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

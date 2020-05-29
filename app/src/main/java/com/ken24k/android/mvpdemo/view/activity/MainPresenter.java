@@ -4,9 +4,8 @@ import android.content.Context;
 
 import com.ken24k.android.mvpdemo.common.Constants;
 import com.ken24k.android.mvpdemo.common.customview.dialog.UpdateDialogManager;
-import com.ken24k.android.mvpdemo.model.bean.AppVersionBean;
+import com.ken24k.android.mvpdemo.model.bean.viersion.AppVersionBean;
 import com.ken24k.android.mvpdemo.view.base.BasePresenter;
-
 
 /**
  * Created by wangming on 2020-05-27

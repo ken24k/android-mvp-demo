@@ -8,7 +8,7 @@ import com.ken24k.android.mvpdemo.R;
 import com.ken24k.android.mvpdemo.common.permission.PermissionConstants;
 import com.ken24k.android.mvpdemo.common.permission.PermissionManager;
 import com.ken24k.android.mvpdemo.common.utils.AndroidUtils;
-import com.ken24k.android.mvpdemo.model.bean.AppVersionBean;
+import com.ken24k.android.mvpdemo.model.bean.viersion.AppVersionBean;
 
 /**
  * Created by wangming on 2020-05-28

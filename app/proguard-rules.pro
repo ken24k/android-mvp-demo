@@ -191,7 +191,7 @@
 -dontwarn com.suchengkeji.android.confusiondemo.md.**
 # 对含有反射类的处理
 -keep class com.suchengkeji.android.confusiondemo.md.** { *; }
--keep class com.weshare.asset.approver.model.bean.**{*;}
+-keep class com.ken24k.android.mvpdemo.model.bean.**{*;}
 
 #
 # ------------------------------------------- 其他 -------------------------------------------------
@@ -277,7 +277,7 @@
 
 -keep class com.google.gson.stream.** { *; }
 -keepattributes EnclosingMethod
--keep class com.weshare.asset.approver.common.retrofit.BaseResponse{*;}
+-keep class com.ken24k.android.mvpdemo.common.retrofit.BaseResponse{*;}
 
 #################### glide ####################
 

@@ -1,4 +1,4 @@
-package com.ken24k.android.mvpdemo.model.bean;
+package com.ken24k.android.mvpdemo.model.bean.viersion;
 
 /**
  * Created by wangming on 2020-05-27

@@ -31,5 +31,15 @@
     <string name="test_act_title">测试页面</string>
     <string name="test_act_et_hint">请输入WEB页面地址</string>
     <string name="test_act_btn_des">点击跳转页面</string>
+    <string name="test_act_fun_1">浏览器功能</string>
+    <string name="test_act_fun_2">身份证拍照功能</string>
+    <string name="test_act_fun_3">相机功能</string>
+    <string name="test_act_fun_4">通讯录功能</string>
+    <string name="test_act_fun_5">拨打电话功能</string>
+    <string name="test_act_fun_6">本地设备信息爬取</string>
+
+    <!--身份照拍照-->
+    <string name="hint_front">拍摄人像面，请对齐边缘</string>
+    <string name="hint_back">拍摄国徽面，请对齐边缘</string>
 
 </resources>

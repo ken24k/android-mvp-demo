@@ -59,7 +59,7 @@ public class IntentActionService {
     public void takePhoto(Context context, int requestCode) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         String imageId = DateUtils.getCurrentDate(DateUtils.DateFormat.yyyyMMddHHmmssSSS);
-        File file = new File(FileUtils.FilePath.JPG_PATH, imageId + FileUtils.FileType.JPG);
+        File file = new File(FileUtils.ExternalFilePath.JPG_PATH, imageId + FileUtils.FileType.JPG);
         if (!file.exists()) {
             file.getParentFile().mkdirs();
         }

@@ -29,7 +29,7 @@ public class Constants {
     /**
      * 更新开关
      */
-    public static final boolean UPGRADE = false;
+    public static final boolean UPGRADE = true;
     /**
      * 环境配置
      */

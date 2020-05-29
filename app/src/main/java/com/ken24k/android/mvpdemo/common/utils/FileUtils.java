@@ -46,6 +46,7 @@ public class FileUtils {
     public static class ExternalFilePath {
         private static final String ROOT_PATH = getRootPath();
         private static final String LOG_PATH = ROOT_PATH + "LOGS/";// 日志目录
+        public static final String JPG_PATH = ROOT_PATH + "IMAGES/";// 图片地址
         public static final String DOWNLOAD_PATH = ROOT_PATH + "DOWNLOADS/";// 下载目录
         public static final String APP_APK_PATH = DOWNLOAD_PATH + "app" + FileType.APK;// 本地apk包地址
     }

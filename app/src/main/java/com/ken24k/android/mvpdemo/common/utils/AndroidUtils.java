@@ -317,7 +317,7 @@ public class AndroidUtils {
         if (file == null || !file.exists()) {
             return;
         }
-        String authority = "com.weshare.asset.approver.fileprovider";
+        String authority = "com.ken24k.android.mvpdemo.fileprovider";
         String inType = "application/vnd.android.package-archive";
         Intent intent = new Intent(Intent.ACTION_VIEW);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

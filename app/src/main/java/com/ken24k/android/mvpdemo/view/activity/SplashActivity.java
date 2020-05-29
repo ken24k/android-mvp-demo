@@ -73,7 +73,7 @@ public class SplashActivity extends BaseActivity<ISplashActivity, SplashPresente
     @Override
     public void gotoMainActivity() {
         Intent intent = new Intent();
-        AndroidUtils.gotoAct(intent, getInstance(), MainActivity.class);
+        AndroidUtils.gotoAct(intent, getInstance(),MainActivity.class);
         SPUtils.getInstance().saveData(SPUtils.KeyName.FIRST_START, true);
     }
 

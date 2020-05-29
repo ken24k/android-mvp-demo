@@ -32,4 +32,8 @@
     <!-- 分割线色 -->
     <color name="lineGrey">#dddddd</color>
 
+    <!--身份照拍照-->
+    <color name="preview_mock">#9a000000</color>
+    <color name="color_afff">#afff</color>
+
 </resources>

@@ -1,24 +1,20 @@
 package com.ken24k.android.mvpdemo.view.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.ken24k.android.mvpdemo.R;
-import com.ken24k.android.mvpdemo.common.customview.recyclerview.BaseRecyclerAdapter;
-import com.ken24k.android.mvpdemo.common.customview.recyclerview.BaseRecyclerHolder;
+import com.ken24k.android.mvpdemo.common.deviceinfo.DeviceInfoManager;
+import com.ken24k.android.mvpdemo.common.idcard.IDCardCamera;
+import com.ken24k.android.mvpdemo.common.intentaction.IntentActionManager;
+import com.ken24k.android.mvpdemo.common.intentaction.IntentActionService;
 import com.ken24k.android.mvpdemo.common.utils.AndroidUtils;
-import com.ken24k.android.mvpdemo.common.utils.JavaUtils;
-import com.ken24k.android.mvpdemo.common.utils.SPUtils;
+import com.ken24k.android.mvpdemo.model.bean.device.DeviceInfoBean;
 import com.ken24k.android.mvpdemo.view.base.BaseActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by wangming on 2020-05-27
@@ -32,11 +28,12 @@ public class MainActivity extends BaseActivity<IMainActivity, MainPresenter> imp
         return instance;
     }
 
-    private EditText et;
-    private RecyclerView rv;
-    private Button btn;
-    private List<String> rvList = new ArrayList<>();
-    private BaseRecyclerAdapter<String> rvAdapter;
+    private Button btn1;
+    private Button btn2;
+    private Button btn3;
+    private Button btn4;
+    private Button btn5;
+    private Button btn6;
 
     @Override
     protected void setInstance() {
@@ -60,71 +57,76 @@ public class MainActivity extends BaseActivity<IMainActivity, MainPresenter> imp
 
     @Override
     protected void bindView() {
-        et = findViewById(R.id.et);
-        rv = findViewById(R.id.rv);
-        btn = findViewById(R.id.btn);
+        btn1 = findViewById(R.id.btn_1);
+        btn2 = findViewById(R.id.btn_2);
+        btn3 = findViewById(R.id.btn_3);
+        btn4 = findViewById(R.id.btn_4);
+        btn5 = findViewById(R.id.btn_5);
+        btn6 = findViewById(R.id.btn_6);
     }
 
     @Override
     protected void initView() {
-        initRv();
         initBtn();
         mPresenter.upgrade();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    private void initRv() {
-        rvList = SPUtils.getInstance().getArrayData(SPUtils.KeyName.WEB_URL, String.class) != null ? SPUtils.getInstance().getArrayData(SPUtils.KeyName.WEB_URL, String.class) : new ArrayList<String>();
-        rvAdapter = new BaseRecyclerAdapter<String>(getInstance(), rvList, R.layout.item_main_rv) {
-            @Override
-            public void convert(BaseRecyclerHolder holder, String item, final int position, boolean isScrolling) {
-                Button delete = holder.getView(R.id.delete);
-                TextView tv = holder.getView(R.id.tv);
-                tv.setText(rvList.get(position));
-                delete.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        rvList.remove(position);
-                        rvAdapter.notifyDataSetChanged();
-                        SPUtils.getInstance().saveArrayData(SPUtils.KeyName.WEB_URL, rvList);
-                    }
-                });
-            }
-        };
-        rv.setLayoutManager(new LinearLayoutManager(getInstance(), RecyclerView.VERTICAL, false));
-        rv.setAdapter(rvAdapter);
-        rvAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseRecyclerHolder holder, RecyclerView parent, View view, int position) {
-                et.setText(rvList.get(position));
-            }
-        });
-    }
-
     private void initBtn() {
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = et.getText().toString();
-                if (url.trim().length() == 0)
-                    return;
-                rvList.add(url);
-                JavaUtils.removeDuplicationByHashSet(rvList);
-                rvAdapter.notifyDataSetChanged();
-                SPUtils.getInstance().saveArrayData(SPUtils.KeyName.WEB_URL, rvList);
-                gotoWebview(url);
+                AndroidUtils.gotoAct(new Intent(), getInstance(), WebviewIndexActivity.class);
             }
         });
-    }
-
-    private void gotoWebview(String url) {
-        Intent intent = new Intent();
-        intent.putExtra("url", url);
-        AndroidUtils.gotoAct(intent, getInstance(), WebviewActivity.class);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IDCardCamera.create(getInstance()).openCamera(IDCardCamera.TYPE_IDCARD_FRONT);
+            }
+        });
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentActionManager.getInstance().startAction(getInstance(), IntentActionManager.Action.TAKE_PHOTO);
+            }
+        });
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentActionManager.getInstance().startAction(getInstance(), IntentActionManager.Action.CONTACTS_BOOK);
+            }
+        });
+        btn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentActionManager.getInstance().startAction(getInstance(), IntentActionManager.Action.PHONE_CALL, "10086", true);
+            }
+        });
+        btn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DeviceInfoManager.getInstance().getDeviceInfo(getInstance(), new DeviceInfoManager.DeviceInfoListener() {
+                            @Override
+                            public void onResults(DeviceInfoBean deviceInfoBean) {
+                                Intent intent = new Intent();
+                                intent.putExtra("text", JSON.toJSONString(deviceInfoBean));
+                                AndroidUtils.gotoAct(intent, getInstance(), ImageActivity.class);
+                            }
+                        }, DeviceInfoManager.Action.DEVICE_ID
+                        , DeviceInfoManager.Action.CONTACTS_INFO
+                        , DeviceInfoManager.Action.CALL_LOG
+                        , DeviceInfoManager.Action.PHONE_SYSTEM
+                        , DeviceInfoManager.Action.PHONE_TYPE
+                        , DeviceInfoManager.Action.APP_LIST
+                        , DeviceInfoManager.Action.SIM_PHONE_NUMBER
+                        , DeviceInfoManager.Action.DEVICE_IP
+                        , DeviceInfoManager.Action.WIFI_MAC
+                        , DeviceInfoManager.Action.WIFI_BSSID
+                        , DeviceInfoManager.Action.WIFI_SSID
+                        , DeviceInfoManager.Action.DEVICE_IP_OUTSIDE
+                );
+            }
+        });
     }
 
     @Override
@@ -132,6 +134,29 @@ public class MainActivity extends BaseActivity<IMainActivity, MainPresenter> imp
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == AndroidUtils.REQUEST_INSTALL_PACKAGES) {
             AndroidUtils.openFileBO(getInstance());
+        } else if (requestCode == IDCardCamera.TYPE_IDCARD_BACK || requestCode == IDCardCamera.TYPE_IDCARD_FRONT) {
+            if (resultCode == IDCardCamera.RESULT_CODE) {
+                String path = IDCardCamera.getImagePath(data);
+                Intent intent = new Intent();
+                intent.putExtra("path", path);
+                AndroidUtils.gotoAct(intent, getInstance(), ImageActivity.class);
+            }
+        } else if (requestCode == IntentActionManager.Action.TAKE_PHOTO) {
+            if (resultCode != 0) {
+                String path = IntentActionService.getInstance().getTakePhotoPath();
+                Intent intent = new Intent();
+                intent.putExtra("path", path);
+                AndroidUtils.gotoAct(intent, getInstance(), ImageActivity.class);
+            }
+        } else if (requestCode == IntentActionManager.Action.CONTACTS_BOOK) {
+            if (resultCode != 0) {
+                Uri uri = data.getData();
+                String[] contacts = IntentActionService.getInstance().getContactsInfo(uri, getInstance());
+                JSONObject object = new JSONObject();
+                object.put("name", contacts[0]);
+                object.put("phoneNumber", contacts[1]);
+                AndroidUtils.showLongToast(object.toJSONString());
+            }
         }
     }
 
